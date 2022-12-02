@@ -282,8 +282,23 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const arr = [...String(ccn)].reverse();
+  let count = 0;
+  for (let i = 1; i < arr.length; i += 2) {
+    if (arr[i]) {
+      arr[i] = Number(arr[i] * 2);
+
+      if (arr[i] > 9) {
+        arr[i] = Number([...String(arr[i])][0]) + Number([...String(arr[i])][1]);
+      }
+    }
+    count += arr[i];
+    if (arr[i + 1]) {
+      count += Number(arr[i + 1]);
+    }
+  }
+  return (10 - (count % 10)) % 10 === Number(arr[0]);
 }
 
 /**
@@ -300,8 +315,13 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const arr = [...String(num)];
+  let count = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    count += Number(arr[i]);
+  }
+  return num > 9 ? getDigitalRoot(count) : num;
 }
 
 /**
@@ -325,8 +345,30 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const arr = [...str];
+  const stack = [];
+  const open = ['[', '(', '{', '<'];
+  const close = [']', ')', '}', '>'];
+  let openIndex;
+  let closeIndex;
+
+  for (let i = 0; i < arr.length; i += 1) {
+    openIndex = open.indexOf(arr[i]);
+    if (openIndex !== -1) {
+      stack.push(openIndex);
+    }
+
+    closeIndex = close.indexOf(arr[i]);
+    if (closeIndex !== -1) {
+      openIndex = stack.pop();
+      if (closeIndex !== openIndex) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
 }
 
 /**
@@ -349,8 +391,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 /**
