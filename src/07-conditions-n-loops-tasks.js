@@ -463,8 +463,60 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  let result;
+  if (
+    (position[0][0] === 'X'
+      && position[0][1] === 'X'
+      && position[0][2] === 'X')
+    || (position[1][0] === 'X'
+      && position[1][1] === 'X'
+      && position[1][2] === 'X')
+    || (position[2][0] === 'X'
+      && position[2][1] === 'X'
+      && position[2][2] === 'X')
+    || (position[0][0] === 'X'
+      && position[1][0] === 'X'
+      && position[2][0] === 'X')
+    || (position[0][1] === 'X'
+      && position[1][1] === 'X'
+      && position[2][1] === 'X')
+    || (position[0][2] === 'X'
+      && position[1][2] === 'X'
+      && position[2][2] === 'X')
+    || (position[0][0] === 'X'
+      && position[1][1] === 'X'
+      && position[2][2] === 'X')
+    || (position[0][2] === 'X' && position[1][1] === 'X' && position[2][0] === 'X')
+  ) {
+    result = 'X';
+  } if (
+    (position[0][0] === '0'
+      && position[0][1] === '0'
+      && position[0][2] === '0')
+    || (position[1][0] === '0'
+      && position[1][1] === '0'
+      && position[1][2] === '0')
+    || (position[2][0] === '0'
+      && position[2][1] === '0'
+      && position[2][2] === '0')
+    || (position[0][0] === '0'
+      && position[1][0] === '0'
+      && position[2][0] === '0')
+    || (position[0][1] === '0'
+      && position[1][1] === '0'
+      && position[2][1] === '0')
+    || (position[0][2] === '0'
+      && position[1][2] === '0'
+      && position[2][2] === '0')
+    || (position[0][0] === '0'
+      && position[1][1] === '0'
+      && position[2][2] === '0')
+    || (position[0][2] === '0' && position[1][1] === '0' && position[2][0] === '0')
+  ) {
+    result = '0';
+  }
+  return result;
 }
 
 module.exports = {
